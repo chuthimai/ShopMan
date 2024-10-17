@@ -25,6 +25,11 @@ public class Client082 extends User082 {
         super(id, fullName, dateOfBirth, email, password, address, gender);
     }
 
+    public Client082() {
+    }
+    
+    
+
     // Getters and Setters
     public boolean isMember() { 
         return isMember; 

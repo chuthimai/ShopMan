@@ -7,6 +7,8 @@ package model.user;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,10 +32,14 @@ public class User082 {
             String password, 
             String address, 
             boolean gender
-    ) throws ParseException {
+    ) {
         this.id = id;
         this.fullName = fullName;
-        this.dateOfBirth = format.parse(dateOfBirth);
+        try {
+            this.dateOfBirth = format.parse(dateOfBirth);
+        } catch (ParseException ex) {
+            this.dateOfBirth = null;
+        }
         this.email = email;
         this.password = password;
         this.address = address;

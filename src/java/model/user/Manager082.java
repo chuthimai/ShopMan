@@ -22,5 +22,11 @@ public class Manager082 extends Employee082 {
     ) throws ParseException{
         super(id, fullName, dateOfBirth, email, password, address, gender, "Manager");
     }
+
+    public Manager082() {
+        this.setPosition("Manager");
+    }
+    
+    
     
 }

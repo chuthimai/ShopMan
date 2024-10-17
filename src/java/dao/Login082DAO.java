@@ -12,7 +12,7 @@ import java.text.ParseException;
 import model.user.Client082;
 import model.user.Manager082;
 import model.user.Seller082;
-import model.user.UserLogin;
+import model.user.User082;
 
 /**
  *
@@ -26,7 +26,7 @@ public class Login082DAO extends DAO{
         connection = super.getConnection();
     }
     
-    public boolean login(String email, String password) throws ParseException {
+    public User082 login(String email, String password) throws ParseException {
         String SELECT_USER = "SELECT * FROM tblUser082 "
                 + "WHERE (email=? AND password=?)";
                 
@@ -38,8 +38,9 @@ public class Login082DAO extends DAO{
             ResultSet rs = preparedStatement.executeQuery();
             System.out.println(">>>> " + preparedStatement.toString());
             
-            while (rs.next()) {                
+            while (rs.next()) {    
                 String id = rs.getString("id");
+                System.out.println("id: " + id);
                 String fullName = rs.getString("fullName");
                 String address = rs.getString("address");
                 String phoneNumber = rs.getString("phoneNumber");
@@ -47,28 +48,26 @@ public class Login082DAO extends DAO{
              
                 if (id.startsWith("C")) {
                     boolean isMember = isMember(id);
-                    Client082 client = new Client082(id, fullName, null, email, password, address, gender);
+                    Client082 client = new Client082();
+                    client.setId(id).setFullName(fullName).setEmail(email).setAddress(address).setGender(gender);
                     client.setMember(isMember);
-                    UserLogin userLoggin = new UserLogin();
-                    userLoggin.setUser(client);
+                    return client;
                 } else if (id.startsWith("M")) {
-                    Manager082 manager = new Manager082(id, fullName, null, email, password, address, gender);
-                    UserLogin userLoggin = new UserLogin();
-                    userLoggin.setUser(manager);
+                    Manager082 manager = new Manager082();
+                    manager.setId(id).setFullName(fullName).setEmail(email).setAddress(address).setPassword(password).setGender(gender);
+                    return manager;
                 } else if (id.startsWith("S")) {
                     Seller082 seller = new Seller082(id, fullName, null, email, password, address, gender);
-                    UserLogin userLoggin = new UserLogin();
-                    userLoggin.setUser(seller);
+                    return seller;
                 }
                 
             }
-            
-            return true;
         } catch (SQLException ex) {
             printSQLException(ex);
             System.out.println(">>>> try catch");
-            return false;
+            return null;
         }
+        return null;
          
     }
     

@@ -60,22 +60,20 @@ table {
     padding: 10px;
 }
 
-.scrollable-play-tennis {
-    height: 8.5rem;
-    overflow-y: scroll;
-    border: 1px solid #ccc;
-    padding: 10px;
+.notification-sucess {
+    padding: 15px;
+    background-color: #4CAF50; /* Màu xanh lá cây */
+    color: white;
+    text-align: center;
+    margin-bottom: 15px;
+    display: none; /* Ban đầu ẩn thông báo */
 }
 
-.matrix > .scrollable {
-    width: 100px;
-    height: 300px;
-    overflow-y: scroll;
-    overflow-x: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
-
-.knn_input {
-    width: 60px;
+.notification-error {
+    padding: 15px;
+    background-color: red; /* Màu xanh đỏ */
+    color: white;
+    text-align: center;
+    margin-bottom: 15px;
+    display: none; /* Ban đầu ẩn thông báo */
 }

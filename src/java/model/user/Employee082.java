@@ -27,6 +27,11 @@ public class Employee082 extends User082 {
         this.position = position;
     }
 
+    public Employee082() {
+    }
+    
+    
+
     // Getters and Setters
     public String getPosition() { 
         return position; 
