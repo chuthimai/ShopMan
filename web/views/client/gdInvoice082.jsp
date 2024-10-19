@@ -4,6 +4,7 @@
     Author     : maichu
 --%>
 
+<%@page import="model.user.Client082"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,8 +17,12 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
+    <%
+        Client082 user = (Client082) session.getAttribute("user");
+    %>
+
     <nav>
-        <a id="name">Client</a>
+        <a id="name"><%=user.getFullName()%></a>
         <a href="${pageContext.request.contextPath}/views/client/gdOrdering082.jsp">Đặt hàng</a>
         <a href="">Tra cứu</a>
         <a href="">Theo dõi hoá đơn</a>

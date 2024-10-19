@@ -4,6 +4,10 @@
     Author     : maichu
 --%>
 
+<%@page import="model.item.ImageItem082"%>
+<%@page import="model.item.Item082"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.user.Client082"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,8 +42,12 @@
         }
     %>
 
+    <%
+        Client082 user = (Client082) session.getAttribute("user");
+    %>
+
     <nav>
-        <a id="name">Client</a>
+        <a id="name"><%=user.getFullName()%></a>
         <a href="" class="select">Đặt hàng</a>
         <a href="">Tra cứu</a>
         <a href="">Theo dõi hoá đơn</a>
@@ -48,10 +56,10 @@
     </nav>
 
     <div class="container text-right my-3">
-        <form action="">
+        <form action="${pageContext.request.contextPath}/searchItems" method="GET">
             <div class="row">
                 <div class="col-10">
-                    <input type="search" class="form-control" id="tenMatHang">
+                    <input type="search" class="form-control" id="tenMatHang" name="search">
                 </div>
                 <div class="col-2">
                     <button type="submit" class="btn btn-secondary">Tìm kiếm</button>
@@ -60,19 +68,36 @@
         </form>
 
     </div>
+    
+        <%
+        try {
+            ArrayList<Item082> items = (ArrayList<Item082>) request.getAttribute("items");
+            ArrayList<ImageItem082> images = (ArrayList<ImageItem082>) request.getAttribute("images");
+            if (items.isEmpty()) {
+        %>
+        <div class="container">Không có kết quả nào cho từ khóa trên</div>
+        <%
+            } else {
+            int numItem = items.size();
+        %>
 
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <%
+                for (int i=0; i<numItem; i++) {
+                Item082 item = items.get(i);
+                ImageItem082 image = images.get(i);
+            %>
             <div class="col">
               <div class="card shadow-sm">
-                <img class="card-img-top" src="https://cdn.tgdd.vn/Products/Images/7718/328065/bhx/hop-4-banh-trung-thu-bach-hoa-xanh-thu-doan-vien-560g-202407221027274730.jpg" style="width: 100%; height: 225">
+                <img class="card-img-top" src="<%=image.getLink()%>" style="width: 100%; height: 225">
                 <div class="card-body">
-                  <h5 class="card-title">Hộp 4 bánh trung thu Kinh Đô Thu Đoàn Viên 560g</h5>
-                  <h6>Giá: 199.000VND</h6>
+                  <h5 class="card-title"><%=item.getNameItem()%></h5>
+                  <h6>Giá: <%=item.getExportedPrice()%>VND</h6>
                   <form class="row">
                       <div class="col-6">
                           <label class="form-label" for="demo1">Số lượng:</label>
-                          <input class="form-control" type="number" id="demo1">
+                          <input class="form-control" type="number" id="demo1" name="quanity">
                       </div>
                       <div class="col-6">
                            <button type="submit" class="btn btn-dark btn-lg">Thêm vào giỏ hàng</button>
@@ -81,44 +106,16 @@
                 </div>
               </div>
             </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <img class="card-img-top" src="https://cdn.tgdd.vn/Products/Images/7718/328119/bhx/hop-4-banh-trung-thu-kidos-bakery-my-vi-an-khang-xanh-600g-202407191047498839.jpg" style="width: 100%; height: 225">
-                <div class="card-body">
-                  <h5 class="card-title">Hộp 4 bánh trung thu Kido's Bakery Mỹ Vị An Khang xanh 600g</h5>
-                  <h6>Giá: 490.000VND</h6>
-                  <form class="row">
-                      <div class="col-6">
-                          <label class="form-label" for="demo2">Số lượng:</label>
-                          <input class="form-control" type="number" id="demo2">
-                      </div>
-                      <div class="col-6">
-                           <button type="submit" class="btn btn-dark btn-lg">Thêm vào giỏ hàng</button>
-                      </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <img class="card-img-top" src="https://cdn.tgdd.vn/Products/Images/7718/328075/bhx/hop-4-banh-trung-thu-huu-nghi-food-momji-tu-quy-320g-202407181624464733.jpg" style="width: 100%; height: 225">
-                <div class="card-body">
-                  <h5 class="card-title">Hộp 4 bánh trung thu Hữu Nghị Momji Tứ Quý 320g</h5>
-                  <h6>Giá: 390.000VND</h6>
-                  <form class="row">
-                      <div class="col-6">
-                          <label class="form-label" for="demo3">Số lượng:</label>
-                          <input class="form-control" type="number" id="demo3">
-                      </div>
-                      <div class="col-6">
-                          <button type="submit" class="btn btn-dark btn-lg">Thêm vào giỏ hàng</button>
-                      </div>
-                  </form>
-                </div>
-              </div>
-            </div>
+            <%
+                }
+            %>
         </div>
     </div>
-
+       <%
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        %>
 </body>
 </html>
