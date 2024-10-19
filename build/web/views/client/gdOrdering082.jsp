@@ -74,6 +74,8 @@
         try {
             ArrayList<Item082> items = (ArrayList<Item082>) request.getAttribute("items");
             ArrayList<ImageItem082> images = (ArrayList<ImageItem082>) request.getAttribute("images");
+            session.setAttribute("items", items);
+            session.setAttribute("images", images);
             if (items.isEmpty()) {
         %>
         <div class="container">Không có kết quả nào cho từ khóa trên</div>
@@ -95,10 +97,10 @@
                 <div class="card-body">
                   <h5 class="card-title"><%=item.getNameItem()%></h5>
                   <h6>Giá: <%=item.getExportedPrice()%>VND</h6>
-                  <form class="row">
+                  <form class="row" action="${pageContext.request.contextPath}/addToShoppingCartServlet/${i}" method="post">
                       <div class="col-6">
-                          <label class="form-label" for="demo1">Số lượng:</label>
-                          <input class="form-control" type="number" id="demo1" name="quanity">
+                          <label class="form-label" for="quanity${i}">Số lượng:</label>
+                          <input class="form-control" type="number" id="quanity${i}" name="quanity${i}" required>
                       </div>
                       <div class="col-6">
                            <button type="submit" class="btn btn-dark btn-lg">Thêm vào giỏ hàng</button>

@@ -1,0 +1,61 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package controller;
+
+import jakarta.servlet.RequestDispatcher;
+import java.io.IOException;
+import java.io.PrintWriter;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
+import model.item.ImageItem082;
+import model.item.Item082;
+import model.ordering.OrderedItem082;
+import model.ordering.ShoppingCart082;
+
+/**
+ *
+ * @author maichu
+ */
+@WebServlet(name = "AddToShoppingCartServlet", urlPatterns = {"/addToShoppingCartServlet/*"})
+public class AddToShoppingCartServlet extends HttpServlet {
+
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        String pathInfo = request.getPathInfo(); // Ví dụ: "/1"
+        String quanity = request.getParameter("quanity");
+        
+        // Kiểm tra và xử lý tham số từ đường dẫn
+        if (pathInfo != null && pathInfo.split("/").length == 3) {
+            String[] parts = pathInfo.split("/");
+            String itemSTT = parts[1]; // lấy "1"
+            int index = Integer.parseInt(itemSTT);
+            ArrayList<Item082> items = (ArrayList<Item082>) session.getAttribute("items");
+            ArrayList<ImageItem082> images = (ArrayList<ImageItem082>) session.getAttribute("images");
+            
+            ShoppingCart082 shoppingCart = ShoppingCart082.getShoppingCart();
+            shoppingCart.addItem(
+                    new OrderedItem082(items.get(index), Integer.parseInt(quanity)),
+                    images.get(index)
+                    );
+            
+            session.setAttribute("success", "Thêm vào giỏ hàng thành công");
+        } else {
+            session.setAttribute("error", "Thêm vào giỏ hàng thất bại");
+        }
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/client/gdOrdering082.jsp");
+        dispatcher.forward(request, response);
+    }
+
+}

@@ -4,6 +4,10 @@
     Author     : maichu
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="model.ordering.OrderedItem082"%>
+<%@page import="model.item.ImageItem082"%>
+<%@page import="model.ordering.ShoppingCart082"%>
 <%@page import="model.user.Client082"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -50,45 +54,67 @@
         <a href="">Đăng ký thành viên</a>
         <a href="" class="select">Giỏ hàng</a>
     </nav>
-
+        <%
+            ShoppingCart082 shoppingCart = ShoppingCart082.getShoppingCart();
+            Map<OrderedItem082, ImageItem082> items = shoppingCart.getItems();
+            double total = 0.0;
+            
+            if (items.isEmpty()) {
+        %>
+        <div>Chưa có mặt hàng nào được thêm vào giỏ hàng</div>
+        <%
+            } else {
+        %>
     <div class="container my-3" style="max-width: 100%; max-height: 5%; padding-inline: 10%; padding-top: 2rem;">
+        <%
+            for (Map.Entry<OrderedItem082, ImageItem082> item : items.entrySet()) {
+                    OrderedItem082 orderedItem = item.getKey();
+                    ImageItem082 imageItem = item.getValue();
+                    total += orderedItem.getTotalPrice();
+                
+        %>
         <div class="row">
             <div class="card mb-3" style="padding: 0;">
               <div class="row g-0 ">
                 <div class="col-md-2">
-                  <img src="https://cdn.tgdd.vn/Products/Images/7718/328065/bhx/hop-4-banh-trung-thu-bach-hoa-xanh-thu-doan-vien-560g-202407221027274730.jpg" class="img-fluid rounded-start" alt="...">
+                    <img src="<%=imageItem.getLink()%>" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-4">
                   <div class="card-body">
-                    <h5 class="card-title">Hộp 4 bánh trung thu Kinh Đô Thu Đoàn Viên 560g</h5>
+                    <h5 class="card-title"><%=orderedItem.getNameItem()%></h5>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="card-body">
                     <h5 class="card-title">Đơn giá</h5>
-                    <h6 class="card-title text-body-secondary">199.000 VND</h6>
+                    <h6 class="card-title text-body-secondary"><%=orderedItem.getExportedPrice()%> VND</h6>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="card-body">
                     <h5 class="card-title">Số lượng</h5>
-                    <h6 class="card-title text-body-secondary">1</h6>
+                    <h6 class="card-title text-body-secondary"><%=orderedItem.getOrderedQuantity()%></h6>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="card-body">
                     <h5 class="card-title">Thành tiền</h5>
-                    <h6 class="card-title text-body-secondary">199.000 VND</h6>
+                    <h6 class="card-title text-body-secondary"><%=orderedItem.getTotalPrice()%> VND</h6>
                   </div>
                 </div>
               </div>
             </div>
         </div>
+        <%
+            }
+        %>
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-dark btn-lg" onclick="openPage('<%=request.getContextPath()%>/views/client/gdInvoice082.jsp')">Lưu đơn</button>
         </div>
     </div>
-
+        <%
+            }
+        %>
 </body>
 </html>
 <script>
