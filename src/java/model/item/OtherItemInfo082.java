@@ -14,6 +14,11 @@ public class OtherItemInfo082 {
     private String nameInfo;
     private String detailInfo;
 
+    public OtherItemInfo082() {
+    }
+    
+    
+
     public OtherItemInfo082(String id, String idItem, String nameInfo, String detailInfo) {
         this.id = id;
         this.idItem = idItem;

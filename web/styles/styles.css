@@ -60,7 +60,10 @@ table {
     padding: 10px;
 }
 
-.notification-sucess {
+.notification-success {
+    position: fixed;
+    z-index: 9998;
+    width: 100%;
     padding: 15px;
     background-color: #4CAF50; /* Màu xanh lá cây */
     color: white;
@@ -70,7 +73,10 @@ table {
 }
 
 .notification-error {
+    position: fixed;
+    z-index: 9999;
     padding: 15px;
+    width: 100%;
     background-color: red; /* Màu xanh đỏ */
     color: white;
     text-align: center;

@@ -4,6 +4,10 @@
     Author     : maichu
 --%>
 
+<%@page import="model.item.Item082"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.Item082DAO"%>
+<%@page import="model.user.Manager082"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,9 +19,34 @@
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
+    <%
+    String error = (String) session.getAttribute("error");
+    if (error != null) {
+    %>
+    <div id="myNotification" class="notification-error">
+            <%= error %>      
+    </div>
+    <%
+        session.setAttribute("error", null);
+        }
+    %>
+    <%
+    String success = (String) session.getAttribute("success");
+    if (success != null) {
+    %>
+    <div id="myNotification" class="notification-success">
+            <%= success %>      
+    </div>
+    <%
+        session.setAttribute("success", null);
+        }
+    %>
+    <%
+        Manager082 user = (Manager082) session.getAttribute("user");
+    %>
+    
     <nav>
-        <a href="" id="name">Manager</a>
+        <a id="name"><%=user.getFullName()%></a>
         <a href="${pageContext.request.contextPath}/views/manager/gdItemManagement082.jsp" class="select">Quản lý mặt hàng</a>
         <a href="">Quản lý nhà cung cấp</a>
         <a href="">Nhập hàng</a>
@@ -41,24 +70,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Bánh trung thu Kinh Đô Lava trứng chảy</td>
-              <td>Bánh trung thu</td>
-              <td>Kinh Đô</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Gạo thơm Vua Gạo ST25 túi 5kg</td>
-              <td>Gạo</td>
-              <td>Vua Gạo</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Ngũ cốc Nestlé Milo vị socola hộp 170g</td>
-              <td>Ngũ cốc</td>
-              <td>Nestlé</td>
-            </tr>
+            <%
+                Item082DAO item082DAO = new Item082DAO();
+                ArrayList<Item082> items = item082DAO.getAllItem();
+                int stt = 1;
+                for (Item082 item: items) {
+            %>
+                <tr>
+                    <th scope="row"><%=stt%></th>
+                    <td><%=item.getNameItem()%></td>
+                    <td><%=item.getType().getName()%></td>
+                    <td><%=item.getBrand()%></td>
+                </tr>
+            <%
+                stt++;
+                }
+            %>
           </tbody>
         </table>
     </div>
@@ -71,3 +98,15 @@ function openPage(url) {
     window.location.href = url; // Chuyển hướng đến URL
 }
 </script>
+<script>
+        // Hiển thị thông báo khi tải trang
+        window.onload = function() {
+            var notification = document.getElementById('myNotification');
+            notification.style.display = 'block';
+
+            // Tắt thông báo sau 3 giây (3000 milliseconds)
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 3000);
+        };
+    </script>

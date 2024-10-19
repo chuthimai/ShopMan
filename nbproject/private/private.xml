@@ -3,14 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/maichu/NetBeansProjects/ShopMan/src/java/model/user/User082.java</file>
-            <file>file:/Users/maichu/NetBeansProjects/ShopMan/web/WEB-INF/views/client/gdMainClient082.jsp</file>
-            <file>file:/Users/maichu/NetBeansProjects/ShopMan/web/index.jsp</file>
-            <file>file:/Users/maichu/NetBeansProjects/ShopMan/web/WEB-INF/views/manager/gdMainManagement082.jsp</file>
-            <file>file:/Users/maichu/NetBeansProjects/ShopMan/src/java/model/user/Client082.java</file>
-            <file>file:/Users/maichu/NetBeansProjects/ShopMan/src/java/model/user/Manager082.java</file>
-            <file>file:/Users/maichu/NetBeansProjects/ShopMan/src/java/model/user/Employee082.java</file>
-            <file>file:/Users/maichu/NetBeansProjects/ShopMan/web/styles/styles.css</file>
+            <file>file:/Users/maichu/NetBeansProjects/ShopMan/src/java/dao/Type082DAO.java</file>
+            <file>file:/Users/maichu/NetBeansProjects/ShopMan/src/java/dao/Item082DAO.java</file>
         </group>
     </open-files>
 </project-private>

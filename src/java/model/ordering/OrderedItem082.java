@@ -19,13 +19,12 @@ public class OrderedItem082 extends Item082{
             String nameItem, 
             String expiry, 
             String brand, 
-            String describe, 
             Type082 type, 
             String unit, 
             float exportedPrice,
             int orderedQuantity
     ) {
-        super(id, nameItem, expiry, brand, describe, type, unit, exportedPrice);
+        super(id, nameItem, expiry, brand, type, unit, exportedPrice);
         this.orderedQuantity = orderedQuantity;
     }
 

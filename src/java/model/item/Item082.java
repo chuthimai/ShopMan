@@ -13,7 +13,6 @@ public class Item082 {
     private String nameItem;
     private String expiry;
     private String brand;
-    private String describe;
     private Type082 type;
     private String unit;
     private float exportedPrice;
@@ -21,12 +20,11 @@ public class Item082 {
     public Item082() {
     }
 
-    public Item082(String id, String nameItem, String expiry, String brand, String describe, Type082 type, String unit, float exportedPrice) {
+    public Item082(String id, String nameItem, String expiry, String brand, Type082 type, String unit, float exportedPrice) {
         this.id = id;
         this.nameItem = nameItem;
         this.expiry = expiry;
         this.brand = brand;
-        this.describe = describe;
         this.type = type;
         this.unit = unit;
         this.exportedPrice = exportedPrice;
@@ -65,15 +63,6 @@ public class Item082 {
 
     public Item082 setBrand(String brand) {
         this.brand = brand;
-        return this;
-    }
-
-    public String getDescribe() {
-        return describe;
-    }
-
-    public Item082 setDescribe(String describe) {
-        this.describe = describe;
         return this;
     }
 

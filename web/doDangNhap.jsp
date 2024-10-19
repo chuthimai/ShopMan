@@ -21,7 +21,7 @@ if (user != null) {
             }
     }
     else {
-    session.setAttribute("message", "Email or password is not correct.");
+    session.setAttribute("error", "Email or password is not correct.");
     RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
                 dispatcher.forward(request, response);
     }

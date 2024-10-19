@@ -15,7 +15,28 @@
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
+    <%
+    String error = (String) session.getAttribute("error");
+    if (error != null) {
+    %>
+    <div id="myNotification" class="notification-error">
+            <%= error %>      
+    </div>
+    <%
+        session.setAttribute("error", null);
+        }
+    %>
+    <%
+    String success = (String) session.getAttribute("success");
+    if (success != null) {
+    %>
+    <div id="myNotification" class="notification-success">
+            <%= success %>      
+    </div>
+    <%
+        session.setAttribute("success", null);
+        }
+    %>
     <nav>
         <a id="name">Client</a>
         <a href="${pageContext.request.contextPath}/views/client/gdOrdering082.jsp">Đặt hàng</a>

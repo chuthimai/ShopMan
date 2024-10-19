@@ -18,14 +18,25 @@
 
     
         <%
-        String message = (String) session.getAttribute("message");
-        if (message != null) {
+        String error = (String) session.getAttribute("error");
+        if (error != null) {
         %>
         <div id="myNotification" class="notification-error">
-                <%= message %>      
+                <%= error %>      
         </div>
         <%
-            session.setAttribute("message", null);
+            session.setAttribute("error", null);
+            }
+        %>
+        <%
+        String success = (String) session.getAttribute("success");
+        if (success != null) {
+        %>
+        <div id="myNotification" class="notification-success">
+                <%= success %>      
+        </div>
+        <%
+            session.setAttribute("success", null);
             }
         %>
    
