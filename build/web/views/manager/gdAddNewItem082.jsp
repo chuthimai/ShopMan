@@ -104,6 +104,9 @@
                                   <option value="Hộp">Hộp</option>
                                   <option value="Gói">Gói</option>
                                   <option value="Thùng">Thùng</option>
+                                  <option value="Túi">Túi</option>
+                                  <option value="Bao">Bao</option>
+                                  <option value="Cây">Cây</option>
                                 </select>
                             </div>
                         </div>

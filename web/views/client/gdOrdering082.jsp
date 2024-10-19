@@ -44,6 +44,7 @@
 
     <%
         Client082 user = (Client082) session.getAttribute("user");
+        String searchQuery = (String) session.getAttribute("searchQuery");
     %>
 
     <nav>
@@ -59,7 +60,7 @@
         <form action="${pageContext.request.contextPath}/searchItems" method="GET">
             <div class="row">
                 <div class="col-10">
-                    <input type="search" class="form-control" id="tenMatHang" name="search">
+                    <input type="search" class="form-control" id="tenMatHang" name="search" placeholder="<%=searchQuery%>">
                 </div>
                 <div class="col-2">
                     <button type="submit" class="btn btn-secondary">Tìm kiếm</button>

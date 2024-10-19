@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -33,6 +34,9 @@ public class SearchItemsServlet extends HttpServlet {
         
         try {
             String searchQuery = request.getParameter("search");
+            HttpSession session = request.getSession();
+            session.setAttribute("searchQuery", searchQuery);
+            
             Item082DAO item082DAO = new Item082DAO();
             ImageItem082DAO imageItem082DAO = new ImageItem082DAO();
             ArrayList<Item082> items = item082DAO.findItems(searchQuery);

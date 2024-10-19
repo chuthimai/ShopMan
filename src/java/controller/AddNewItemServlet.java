@@ -114,7 +114,9 @@ public class AddNewItemServlet extends HttpServlet {
                     
 
                     ImageItem082 image = new ImageItem082();
-                    image.setIdItem(idItem).setLink(filePath);
+                    image.setIdItem(idItem)
+                            .setLink("http://localhost:8080/ShopMan/images/items/"+ 
+                                    idItem + "/image"+ Integer.toString(imageIndex) +".png");
                     imageItem082DAO.addImageItem082(image);
                 } catch (Exception e) {
                     System.out.println(e.toString());
