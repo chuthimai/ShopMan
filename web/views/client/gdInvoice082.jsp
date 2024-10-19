@@ -4,6 +4,14 @@
     Author     : maichu
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="model.ordering.OrderedItem082"%>
+<%@page import="model.ordering.OrderedItem082"%>
+<%@page import="model.item.ImageItem082"%>
+<%@page import="model.ordering.ShoppingCart082"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="model.user.Client082"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,8 +24,14 @@
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
+    <%
+        Client082 user = (Client082) session.getAttribute("user");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String date = simpleDateFormat.format(new Date());
+    %>
+
     <nav>
-        <a id="name">Client</a>
+        <a id="name"><%=user.getFullName()%></a>
         <a href="${pageContext.request.contextPath}/views/client/gdOrdering082.jsp">Đặt hàng</a>
         <a href="">Tra cứu</a>
         <a href="">Theo dõi hoá đơn</a>
@@ -33,23 +47,19 @@
           <tbody>
             <tr>
               <th scope="row">Tên khách hàng</th>
-              <td>Nguyễn Văn A</td>
+              <td><%=user.getFullName()%></td>
               <td></td>
             </tr>
             <tr>
               <th scope="row">Thời gian đặt hàng </th>
-              <td>08/09/2024</td>
-              <td>14:29:20</td>
+              <td><%=date%></td>
+              
             </tr>
             <tr>
               <th scope="row">Địa chỉ </th>
-              <td>Số 1, phố A, TP B, tỉnh C, Việt Nam</td>
+              <td><%=user.getAddress()%></td>
             </tr>
-            <tr>
-              <th scope="row">Mã đơn hàng </th>
-              <td>DH5285965</td>
-              <td></td>
-            </tr>
+            
           </tbody>
         </table>
         <table class="table text-start">
@@ -58,30 +68,54 @@
             <tr>
               <th scope="col">STT</th>
               <th scope="col">Tên mặt hàng</th>
-              <th scope="col">Số lượng</th>
-              <th scope="col">Đơn giá</th>
-              <th scope="col">Thành tiền</th>
+              <th scope="col" class="text-center">Số lượng</th>
+              <th scope="col" class="text-center">Đơn giá</th>
+              <th scope="col" class="text-center">Thành tiền</th>
             </tr>
           </thead>
           <tbody>
+              <%
+                    ShoppingCart082 shoppingCart = ShoppingCart082.getShoppingCart();
+                    Map<OrderedItem082, ImageItem082> items = shoppingCart.getItems();
+                    double total = 0.0;
+                    int stt = 1;
+
+                    for (Map.Entry<OrderedItem082, ImageItem082> item : items.entrySet()) {
+                            OrderedItem082 orderedItem = item.getKey();
+                            
+                %>
             <tr>
-              <th scope="row">1</th>
-              <td>Hộp 4 bánh trung thu Kinh Đô Thu Đoàn Viên 560g</td>
-              <td>1</td>
-              <td>199.000 VND</td>
-              <td>199.000 VND</td>
+                <th scope="row"><%=stt%></th>
+                <td><%=orderedItem.getNameItem()%></td>
+              <td class="text-center"><%=orderedItem.getOrderedQuantity()%></td>
+              <td class="text-center"><%=orderedItem.getExportedPrice()%> VND</td>
+              <td class="text-center"><%=orderedItem.getTotalPrice()%> VND</td>
             </tr>
+            <%
+                total += orderedItem.getTotalPrice();
+                stt++;
+                }
+            %>
             <tr>
               <th scope="row">Tổng tiền</th>
-              <td colspan="4">199.000 VND</td>
+              <td colspan="4"><%=total%> VND</td>
             </tr>
           </tbody>
         </table>
-        <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-dark btn-lg mx-1">Lưu</button>
-            <button type="submit" class="btn btn-outline-secondary btn-lg mx-1">Hủy</button>
+            
+        <form action="${pageContext.request.contextPath}/saveInvoiceServlet" method="POST">
+        <div class="d-flex justify-content-center py-3">
+            <button type="submit" class="btn btn-dark btn-lg mx-1" >Lưu</button>
+            <button type="button" class="btn btn-outline-secondary btn-lg mx-1" onclick="openPage('<%=request.getContextPath()%>/views/client/gdShoppingCart082.jsp')">Hủy</button>
         </div>
+        </form>
     </div>
 
 </body>
 </html>
+<script>
+    function openPage(url) {
+            window.location.href = url; // Chuyển hướng đến URL
+        }
+</script>
+    

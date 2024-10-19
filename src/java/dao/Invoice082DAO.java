@@ -24,7 +24,8 @@ public class Invoice082DAO extends DAO{
         connection = super.getConnection();
     }
     
-    String addInvoice(Invoice082 invoice) {
+    
+    public String addInvoice(Invoice082 invoice) {
         String SET_ID_INVOICE = "SET @idInvoice = ''";
         String ADD_INVOICE = "CALL add_invoice(?, ?, @idInvoice)";
         String SELECT_ID_INVOICE = "SELECT @idInvoice";

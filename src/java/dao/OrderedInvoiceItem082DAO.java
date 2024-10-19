@@ -27,7 +27,7 @@ public class OrderedInvoiceItem082DAO extends DAO{
     
     
     
-    boolean addOrderedInvoiceItem(String idInvoice, ShoppingCart082 shoppingCart) {
+    public boolean addOrderedInvoiceItem(String idInvoice, ShoppingCart082 shoppingCart) {
         String ADD_ORDER_INVOICE_ITEM = "CALL add_ordered_invoice_item(?, ?, ?)";
         
         for (Map.Entry<OrderedItem082, ImageItem082> item: shoppingCart.getItems().entrySet()) {
