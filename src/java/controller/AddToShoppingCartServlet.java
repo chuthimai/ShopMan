@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Map;
 import model.item.ImageItem082;
 import model.item.Item082;
 import model.ordering.OrderedItem082;
@@ -46,10 +47,26 @@ public class AddToShoppingCartServlet extends HttpServlet {
             ArrayList<ImageItem082> images = (ArrayList<ImageItem082>) session.getAttribute("images");
             
             ShoppingCart082 shoppingCart = ShoppingCart082.getShoppingCart();
-            shoppingCart.addItem(
+            
+            boolean isDiff = true;
+            for (Map.Entry<OrderedItem082, ImageItem082> item : shoppingCart.getItems().entrySet()) {
+                OrderedItem082 orderedItem = item.getKey();
+                if (orderedItem.getNameItem().equals(items.get(index).getNameItem())) {
+                    isDiff = false;
+                    orderedItem.setOrderedQuantity(orderedItem.getOrderedQuantity() + Integer.parseInt(quanity));
+                    shoppingCart.getItems().remove(item.getKey());
+                    shoppingCart.addItem(orderedItem, images.get(index));
+                    break;
+                }
+                
+            }
+            
+            if (isDiff) {
+                shoppingCart.addItem(
                     new OrderedItem082(items.get(index), Integer.parseInt(quanity)),
                     images.get(index)
                     );
+            }
             
             session.setAttribute("success", "Thêm vào giỏ hàng thành công");
         } else {

@@ -147,7 +147,7 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center py-3">
                 <button type="submit" class="btn btn-dark btn-lg mx-1">Lưu mặt hàng</button>
                 <button type="button" class="btn btn-outline-secondary btn-lg mx-1" onclick="openPage('<%=request.getContextPath()%>/views/manager/gdItemManagement082.jsp')">Hủy</button>
             </div>

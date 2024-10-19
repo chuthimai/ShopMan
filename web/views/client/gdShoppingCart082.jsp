@@ -108,7 +108,7 @@
         <%
             }
         %>
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center py-3">
             <button type="submit" class="btn btn-dark btn-lg" onclick="openPage('<%=request.getContextPath()%>/views/client/gdInvoice082.jsp')">Lưu đơn</button>
         </div>
     </div>

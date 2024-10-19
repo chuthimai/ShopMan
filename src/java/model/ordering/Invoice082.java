@@ -63,57 +63,65 @@ public class Invoice082 {
     public String getId() { 
         return id; 
     }
-    public void setId(String id) {
+    public Invoice082 setId(String id) {
         this.id = id; 
+        return this;
     }
 
     public Date getOrderingTime() { 
         return orderingTime;
     }
-    public void setOrderingTime(Date orderingTime) { 
+    public Invoice082 setOrderingTime(Date orderingTime) { 
         this.orderingTime = orderingTime; 
+        return this;
     }
 
     public Date getPaymentTime() { 
         return paymentTime; 
     }
-    public void setPaymentTime(Date paymentTime) { 
+    public Invoice082 setPaymentTime(Date paymentTime) { 
         this.paymentTime = paymentTime; 
+        return this;
     }
 
     public Date getDeliveryTime() { 
         return deliveryTime;
     }
-    public void setDeliveryTime(Date deliveryTime) { 
+    public Invoice082 setDeliveryTime(Date deliveryTime) { 
         this.deliveryTime = deliveryTime; 
+        return this;
     }
 
     public Client082 getClient() { 
         return client; 
     }
-    public void setClient(Client082 client) { 
-        this.client = client; 
+    public Invoice082 setClient(Client082 client) { 
+        this.client = client;
+        return this;
     }
 
     public Seller082 getSeller() { 
         return seller;
     }
-    public void setSeller(Seller082 seller) {
+    public Invoice082 setSeller(Seller082 seller) {
         this.seller = seller; 
+        return this;
     }
 
     public Shipper082 getShipper() { 
         return shipper; 
     }
-    public void setShipper(Shipper082 shipper) { 
-        this.shipper = shipper; 
+    public Invoice082 setShipper(Shipper082 shipper) { 
+        this.shipper = shipper;
+        return this;
     }
 
     public float getTotalPrice() { 
         return totalPrice; 
     }
-    public void setTotalPrice(float totalPrice) {
+    public Invoice082 setTotalPrice(float totalPrice) {
         this.totalPrice = totalPrice; 
+        return this;
     }
 }
 
