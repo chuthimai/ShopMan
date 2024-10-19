@@ -14,20 +14,6 @@ import model.item.Type082;
 public class OrderedItem082 extends Item082{
     private int orderedQuantity;
 
-    public OrderedItem082(
-            String id, 
-            String nameItem, 
-            String expiry, 
-            String brand, 
-            Type082 type, 
-            String unit, 
-            float exportedPrice,
-            int orderedQuantity
-    ) {
-        super(id, nameItem, expiry, brand, type, unit, exportedPrice);
-        this.orderedQuantity = orderedQuantity;
-    }
-
     public OrderedItem082(Item082 item082, int orderedQuantity) {
         super(
                 item082.getId(), 

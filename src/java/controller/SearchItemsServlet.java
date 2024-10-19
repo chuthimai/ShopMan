@@ -51,10 +51,8 @@ public class SearchItemsServlet extends HttpServlet {
             
             RequestDispatcher dispatcher = request.getRequestDispatcher("/views/client/gdOrdering082.jsp");
             dispatcher.forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(SearchItemsServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SearchItemsServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            System.out.println("SearchItemsServlet ---> " + ex.toString());
         }
     }
     

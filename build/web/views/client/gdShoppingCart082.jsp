@@ -70,7 +70,7 @@
             for (Map.Entry<OrderedItem082, ImageItem082> item : items.entrySet()) {
                     OrderedItem082 orderedItem = item.getKey();
                     ImageItem082 imageItem = item.getValue();
-                    total += orderedItem.getTotalPrice();
+                    
                 
         %>
         <div class="row">
@@ -122,3 +122,16 @@ function openPage(url) {
     window.location.href = url; // Chuyển hướng đến URL
 }
 </script>
+
+<script>
+        // Hiển thị thông báo khi tải trang
+        window.onload = function() {
+            var notification = document.getElementById('myNotification');
+            notification.style.display = 'block';
+
+            // Tắt thông báo sau 3 giây (3000 milliseconds)
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 3000);
+        };
+    </script>

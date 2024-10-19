@@ -49,6 +49,7 @@ public class ImageItem082DAO extends DAO {
             
             while (result.next()) {
                 String id = result.getString("id");
+                String idI = result.getString("idItem");
                 String link = result.getString("link");
                 
                 ImageItem082 image = new ImageItem082(id, idItem, link);

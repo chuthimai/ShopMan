@@ -13,7 +13,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Giỏ hàng</title>
+    <title>Đặt hàng</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/styles/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
@@ -90,17 +90,18 @@
                 for (int i=0; i<numItem; i++) {
                 Item082 item = items.get(i);
                 ImageItem082 image = images.get(i);
+                
             %>
             <div class="col">
               <div class="card shadow-sm">
                 <img class="card-img-top" src="<%=image.getLink()%>" style="width: 100%; height: 225">
                 <div class="card-body">
                   <h5 class="card-title"><%=item.getNameItem()%></h5>
-                  <h6>Giá: <%=item.getExportedPrice()%>VND</h6>
-                  <form class="row" action="${pageContext.request.contextPath}/addToShoppingCartServlet/${i}" method="post">
+                  <h6>Giá: <%=item.getExportedPrice()%> VND</h6>
+                  <form class="row" action="${pageContext.request.contextPath}/addToShoppingCartServlet/<%=i%>" method="post">
                       <div class="col-6">
                           <label class="form-label" for="quanity${i}">Số lượng:</label>
-                          <input class="form-control" type="number" id="quanity${i}" name="quanity${i}" required>
+                          <input class="form-control" type="number" id="quanity${i}" name="quanity<%=i%>" required>
                       </div>
                       <div class="col-6">
                            <button type="submit" class="btn btn-dark btn-lg">Thêm vào giỏ hàng</button>
@@ -122,3 +123,15 @@
         %>
 </body>
 </html>
+<script>
+        // Hiển thị thông báo khi tải trang
+        window.onload = function() {
+            var notification = document.getElementById('myNotification');
+            notification.style.display = 'block';
+
+            // Tắt thông báo sau 3 giây (3000 milliseconds)
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 3000);
+        };
+    </script>

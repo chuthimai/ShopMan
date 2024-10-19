@@ -33,12 +33,14 @@ public class AddToShoppingCartServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         String pathInfo = request.getPathInfo(); // Ví dụ: "/1"
-        String quanity = request.getParameter("quanity");
         
         // Kiểm tra và xử lý tham số từ đường dẫn
-        if (pathInfo != null && pathInfo.split("/").length == 3) {
+        if (pathInfo != null) {
             String[] parts = pathInfo.split("/");
             String itemSTT = parts[1]; // lấy "1"
+            
+            String quanity = request.getParameter("quanity" + itemSTT);
+            
             int index = Integer.parseInt(itemSTT);
             ArrayList<Item082> items = (ArrayList<Item082>) session.getAttribute("items");
             ArrayList<ImageItem082> images = (ArrayList<ImageItem082>) session.getAttribute("images");
