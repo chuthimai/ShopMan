@@ -55,8 +55,8 @@
         <a href="" class="select">Giỏ hàng</a>
     </nav>
         <%
-            ShoppingCart082 shoppingCart = (ShoppingCart082) session.getAttribute("shoppingCart");
-            Map<OrderedItem082, ImageItem082> items = shoppingCart.getItems();
+            ShoppingCart082 shoppingCart082 = (ShoppingCart082) session.getAttribute("shoppingCart");
+            Map<OrderedItem082, ImageItem082> items = shoppingCart082.getItems();
             double total = 0.0;
             
             if (items.isEmpty()) {

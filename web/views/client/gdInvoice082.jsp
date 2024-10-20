@@ -75,8 +75,8 @@
           </thead>
           <tbody>
               <%
-                    ShoppingCart082 shoppingCart = (ShoppingCart082) session.getAttribute("shoppingCart");
-                    Map<OrderedItem082, ImageItem082> items = shoppingCart.getItems();
+                    ShoppingCart082 shoppingCart082 = (ShoppingCart082) session.getAttribute("shoppingCart");
+                    Map<OrderedItem082, ImageItem082> items = shoppingCart082.getItems();
                     double total = 0.0;
                     int stt = 1;
 

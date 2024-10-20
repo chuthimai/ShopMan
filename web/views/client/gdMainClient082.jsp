@@ -19,8 +19,8 @@
     
     <%
         Client082 user = (Client082) session.getAttribute("user");
-        ShoppingCart082 shoppingCart = new ShoppingCart082();
-        session.setAttribute("shoppingCart", shoppingCart);
+        ShoppingCart082 shoppingCart082 = new ShoppingCart082();
+        session.setAttribute("shoppingCart", shoppingCart082);
     %>
 
     <nav>
