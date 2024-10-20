@@ -44,7 +44,7 @@ public class SaveInvoiceServlet extends HttpServlet {
             OrderedInvoiceItem082DAO orderedInvoiceItem082DAO = new OrderedInvoiceItem082DAO();
             
             Client082 client = (Client082) session.getAttribute("user");
-            ShoppingCart082 shoppingCart082 = ShoppingCart082.getShoppingCart();
+            ShoppingCart082 shoppingCart082 = (ShoppingCart082) session.getAttribute("shoppingCart");
             
             Map<OrderedItem082, ImageItem082> items = shoppingCart082.getItems();
             Invoice082 invoice = new Invoice082();
@@ -62,6 +62,7 @@ public class SaveInvoiceServlet extends HttpServlet {
                 orderedInvoiceItem082DAO.addOrderedInvoiceItem(idInvocie, shoppingCart082);
             }
             shoppingCart082.resetShoppingCart();
+            session.setAttribute("shoppingCart", shoppingCart082);
             session.setAttribute("success", "Lưu đơn hàng thành công");
             
         } catch (SQLException ex) {

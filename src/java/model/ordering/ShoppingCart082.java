@@ -12,7 +12,6 @@ import model.item.ImageItem082;
  * @author maichu
  */
 public class ShoppingCart082 {
-    final private static ShoppingCart082 shoppingCart = new ShoppingCart082();
     private Map<OrderedItem082, ImageItem082> items;
 
     public ShoppingCart082() {
@@ -21,10 +20,6 @@ public class ShoppingCart082 {
 
     public Map<OrderedItem082, ImageItem082> getItems() {
         return items;
-    }
-
-    public static ShoppingCart082 getShoppingCart() {
-        return shoppingCart;
     }
     
     public void addItem(OrderedItem082 orderedItem, ImageItem082 image) {

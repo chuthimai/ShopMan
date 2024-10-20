@@ -46,7 +46,7 @@ public class AddToShoppingCartServlet extends HttpServlet {
             ArrayList<Item082> items = (ArrayList<Item082>) session.getAttribute("items");
             ArrayList<ImageItem082> images = (ArrayList<ImageItem082>) session.getAttribute("images");
             
-            ShoppingCart082 shoppingCart = ShoppingCart082.getShoppingCart();
+            ShoppingCart082 shoppingCart = (ShoppingCart082) session.getAttribute("shoppingCart");
             
             boolean isDiff = true;
             for (Map.Entry<OrderedItem082, ImageItem082> item : shoppingCart.getItems().entrySet()) {
@@ -67,7 +67,7 @@ public class AddToShoppingCartServlet extends HttpServlet {
                     images.get(index)
                     );
             }
-            
+            session.setAttribute("shoppingCart", shoppingCart);
             session.setAttribute("success", "Thêm vào giỏ hàng thành công");
         } else {
             session.setAttribute("error", "Thêm vào giỏ hàng thất bại");

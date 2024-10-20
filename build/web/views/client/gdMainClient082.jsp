@@ -4,6 +4,7 @@
     Author     : maichu
 --%>
 
+<%@page import="model.ordering.ShoppingCart082"%>
 <%@page import="model.user.Client082"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,6 +19,8 @@
     
     <%
         Client082 user = (Client082) session.getAttribute("user");
+        ShoppingCart082 shoppingCart = new ShoppingCart082();
+        session.setAttribute("shoppingCart", shoppingCart);
     %>
 
     <nav>
