@@ -64,9 +64,11 @@
           <thead>
             <tr>
               <th scope="col">STT</th>
-              <th scope="col">Tên mặt hàng</th>
+              <th scope="col">Mã mặt hàng</th>
+              <th scope="col" class="text-start">Tên mặt hàng</th>
               <th scope="col">Loại</th>
               <th scope="col">Nhãn hiệu</th>
+              <th scope="col">Giá bán</th>
             </tr>
           </thead>
           <tbody>
@@ -78,9 +80,11 @@
             %>
                 <tr>
                     <th scope="row"><%=stt%></th>
-                    <td><%=item.getNameItem()%></td>
+                    <td><%=item.getId() %></td>
+                    <td class="text-start"><%=item.getNameItem()%></td>
                     <td><%=item.getType().getName()%></td>
                     <td><%=item.getBrand()%></td>
+                    <td><%=item.getExportedPrice() %> VND</td>
                 </tr>
             <%
                 stt++;
@@ -109,4 +113,4 @@ function openPage(url) {
                 notification.style.display = 'none';
             }, 3000);
         };
-    </script>
+</script>

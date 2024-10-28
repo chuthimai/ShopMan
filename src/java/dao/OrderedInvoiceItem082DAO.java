@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Map;
 import model.item.ImageItem082;
+import model.ordering.Invoice082;
 import model.ordering.OrderedItem082;
 import model.ordering.ShoppingCart082;
 
@@ -27,14 +28,14 @@ public class OrderedInvoiceItem082DAO extends DAO{
     
     
     
-    public boolean addOrderedInvoiceItem(String idInvoice, ShoppingCart082 shoppingCart) {
+    public boolean addOrderedInvoiceItem(Invoice082 invoice, ShoppingCart082 shoppingCart) {
         String ADD_ORDER_INVOICE_ITEM = "CALL add_ordered_invoice_item(?, ?, ?)";
         
         for (Map.Entry<OrderedItem082, ImageItem082> item: shoppingCart.getItems().entrySet()) {
             try {
                 PreparedStatement preparedStatement = connection.prepareStatement(ADD_ORDER_INVOICE_ITEM);
                 preparedStatement.setString(1, item.getKey().getId());
-                preparedStatement.setString(2, idInvoice);
+                preparedStatement.setString(2, invoice.getId());
                 preparedStatement.setInt(3, item.getKey().getOrderedQuantity());
                 preparedStatement.execute();
             } catch (SQLException e) {

@@ -16,7 +16,7 @@ if (user != null) {
             }
         
         if (user.getId().startsWith("C")) {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/client/gdMainClient082.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/client/gdMainCustomer082.jsp");
                 dispatcher.forward(request, response);
             }
     }

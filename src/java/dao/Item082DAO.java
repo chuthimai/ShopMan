@@ -28,7 +28,7 @@ public class Item082DAO extends DAO{
     
     public String addItem(Item082 item) {
         String SET_ID_ITEM = "SET @idItem = ''";
-        String ADD_ITEM = "CALL add_item(?, ?, ?, ?, ?, ?, @idItem)";
+        String ADD_ITEM = "CALL add_item(?, ?, ?, ?, ?, @idItem)";
         String SELECT_ID_ITEM = "SELECT @idItem";
         
         
@@ -38,11 +38,10 @@ public class Item082DAO extends DAO{
             System.out.println("Thuc hien lenh set");
             preparedStatement = connection.prepareStatement(ADD_ITEM);
             preparedStatement.setString(1, item.getNameItem());
-            preparedStatement.setString(2, item.getExpiry());
-            preparedStatement.setString(3, item.getBrand());
-            preparedStatement.setString(4, item.getType().getId());
-            preparedStatement.setString(5, item.getUnit());
-            preparedStatement.setFloat(6, item.getExportedPrice());
+            preparedStatement.setString(2, item.getBrand());
+            preparedStatement.setString(3, item.getType().getId());
+            preparedStatement.setString(4, item.getUnit());
+            preparedStatement.setFloat(5, item.getExportedPrice());
             preparedStatement.execute();
             System.out.println("Thuc hien lenh chen");
             preparedStatement = connection.prepareStatement(SELECT_ID_ITEM);
@@ -70,7 +69,6 @@ public class Item082DAO extends DAO{
             while (result.next()) {
                 String id = result.getString("id");
                 String nameItem = result.getString("nameItem");
-                String expiry = result.getString("expiry");
                 String brand = result.getString("brand");
                 String idType = result.getString("idType");
                 String unit = result.getString("unit");
@@ -83,7 +81,6 @@ public class Item082DAO extends DAO{
                 item.setId(id)
                         .setNameItem(nameItem)
                         .setBrand(brand)
-                        .setExpiry(expiry)
                         .setExportedPrice(exportedPrice)
                         .setUnit(unit)
                         .setType(type);
@@ -109,7 +106,6 @@ public class Item082DAO extends DAO{
             while (result.next()) {
                 String id = result.getString("id");
                 String nameItem = result.getString("nameItem");
-                String expiry = result.getString("expiry");
                 String brand = result.getString("brand");
                 String idType = result.getString("idType");
                 String unit = result.getString("unit");
@@ -119,7 +115,6 @@ public class Item082DAO extends DAO{
                 item.setId(id)
                         .setNameItem(nameItem)
                         .setBrand(brand)
-                        .setExpiry(expiry)
                         .setExportedPrice(exportedPrice)
                         .setUnit(unit);
                 

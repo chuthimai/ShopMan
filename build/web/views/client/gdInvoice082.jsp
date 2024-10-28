@@ -11,7 +11,7 @@
 <%@page import="model.ordering.ShoppingCart082"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="model.user.Client082"%>
+<%@page import="model.user.Customer082"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,9 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
     <%
-        Client082 user = (Client082) session.getAttribute("user");
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String date = simpleDateFormat.format(new Date());
+        Customer082 user = (Customer082) session.getAttribute("user");
     %>
 
     <nav>
@@ -51,8 +49,13 @@
               <td></td>
             </tr>
             <tr>
-              <th scope="row">Thời gian đặt hàng </th>
-              <td><%=date%></td>
+              <th scope="row">Số điện thoại</th>
+              <td><%=user.getPhoneNumber() %></td>
+              
+            </tr>
+            <tr>
+              <th scope="row">Email</th>
+              <td><%=user.getEmail() %></td>
               
             </tr>
             <tr>
@@ -67,6 +70,7 @@
           <thead>
             <tr>
               <th scope="col">STT</th>
+              <th scope="col">Mã mặt hàng</th>
               <th scope="col">Tên mặt hàng</th>
               <th scope="col" class="text-center">Số lượng</th>
               <th scope="col" class="text-center">Đơn giá</th>
@@ -76,20 +80,20 @@
           <tbody>
               <%
                     ShoppingCart082 shoppingCart082 = (ShoppingCart082) session.getAttribute("shoppingCart");
-                    Map<OrderedItem082, ImageItem082> items = shoppingCart082.getItems();
                     double total = 0.0;
                     int stt = 1;
 
-                    for (Map.Entry<OrderedItem082, ImageItem082> item : items.entrySet()) {
+                    for (Map.Entry<OrderedItem082, ImageItem082> item : shoppingCart082.getItems().entrySet()) {
                             OrderedItem082 orderedItem = item.getKey();
                             
                 %>
             <tr>
                 <th scope="row"><%=stt%></th>
+                <td><%=orderedItem.getId() %></td>
                 <td><%=orderedItem.getNameItem()%></td>
-              <td class="text-center"><%=orderedItem.getOrderedQuantity()%></td>
-              <td class="text-center"><%=orderedItem.getExportedPrice()%> VND</td>
-              <td class="text-center"><%=orderedItem.getTotalPrice()%> VND</td>
+                <td class="text-center"><%=orderedItem.getOrderedQuantity()%></td>
+                <td class="text-center"><%=orderedItem.getExportedPrice()%> VND</td>
+                <td class="text-center"><%=orderedItem.getTotalPrice()%> VND</td>
             </tr>
             <%
                 total += orderedItem.getTotalPrice();
@@ -98,7 +102,11 @@
             %>
             <tr>
               <th scope="row">Tổng tiền</th>
-              <td colspan="4"><%=total%> VND</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="text-center"><%=total%> VND</td>
             </tr>
           </tbody>
         </table>

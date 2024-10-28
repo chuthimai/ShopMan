@@ -10,9 +10,8 @@ package model.ordering;
  */
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
-import model.user.Client082;
+import model.user.Customer082;
 import model.user.Seller082;
 import model.user.Shipper082;
 
@@ -21,14 +20,14 @@ public class Invoice082 {
     private Date orderingTime;
     private Date paymentTime;
     private Date deliveryTime;
-    private Client082 client;
+    private Customer082 customer;
     private Seller082 seller;
     private Shipper082 shipper;
     private float totalPrice;
     private final SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-    public Invoice082(Client082 client, float totalPrice) throws ParseException {
-        this.client = client;
+    public Invoice082(Customer082 client, float totalPrice) throws ParseException {
+        this.customer = client;
         this.totalPrice = totalPrice;
 //        this.orderingTime = Date.from(Instant.now()); //  sử dụng múi giờ UTC
         this.orderingTime = new Date();
@@ -44,7 +43,7 @@ public class Invoice082 {
             Date orderingTime,
             Date paymentTime, 
             Date deliveryTime, 
-            Client082 client, 
+            Customer082 client, 
             Seller082 seller, 
             Shipper082 shipper, 
             float totalPrice
@@ -53,7 +52,7 @@ public class Invoice082 {
         this.orderingTime = orderingTime;
         this.paymentTime = paymentTime;
         this.deliveryTime = deliveryTime;
-        this.client = client;
+        this.customer = client;
         this.seller = seller;
         this.shipper = shipper;
         this.totalPrice = totalPrice;
@@ -92,11 +91,11 @@ public class Invoice082 {
         return this;
     }
 
-    public Client082 getClient() { 
-        return client; 
+    public Customer082 getCustomer() { 
+        return customer; 
     }
-    public Invoice082 setClient(Client082 client) { 
-        this.client = client;
+    public Invoice082 setCustomer(Customer082 customer) { 
+        this.customer = customer;
         return this;
     }
 

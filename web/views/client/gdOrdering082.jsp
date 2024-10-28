@@ -7,7 +7,7 @@
 <%@page import="model.item.ImageItem082"%>
 <%@page import="model.item.Item082"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.user.Client082"%>
+<%@page import="model.user.Customer082"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -43,7 +43,7 @@
     %>
 
     <%
-        Client082 user = (Client082) session.getAttribute("user");
+        Customer082 user = (Customer082) session.getAttribute("user");
         String searchQuery = (String) session.getAttribute("searchQuery");
     %>
 
@@ -60,7 +60,7 @@
         <form action="${pageContext.request.contextPath}/searchItems" method="GET">
             <div class="row">
                 <div class="col-10">
-                    <input type="search" class="form-control" id="tenMatHang" name="search" placeholder="<%=searchQuery%>">
+                    <input type="search" class="form-control" id="search" name="search" placeholder="<%=searchQuery%>">
                 </div>
                 <div class="col-2">
                     <button type="submit" class="btn btn-secondary">Tìm kiếm</button>

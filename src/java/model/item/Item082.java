@@ -11,7 +11,6 @@ package model.item;
 public class Item082 {
     private String id;
     private String nameItem;
-    private String expiry;
     private String brand;
     private Type082 type;
     private String unit;
@@ -20,10 +19,9 @@ public class Item082 {
     public Item082() {
     }
 
-    public Item082(String id, String nameItem, String expiry, String brand, Type082 type, String unit, float exportedPrice) {
+    public Item082(String id, String nameItem, String brand, Type082 type, String unit, float exportedPrice) {
         this.id = id;
         this.nameItem = nameItem;
-        this.expiry = expiry;
         this.brand = brand;
         this.type = type;
         this.unit = unit;
@@ -45,15 +43,6 @@ public class Item082 {
 
     public Item082 setNameItem(String nameItem) {
         this.nameItem = nameItem;
-        return this;
-    }
-
-    public String getExpiry() {
-        return expiry;
-    }
-
-    public Item082 setExpiry(String expiry) {
-        this.expiry = expiry;
         return this;
     }
 

@@ -17,8 +17,7 @@ public class OrderedItem082 extends Item082{
     public OrderedItem082(Item082 item082, int orderedQuantity) {
         super(
                 item082.getId(), 
-                item082.getNameItem(), 
-                item082.getExpiry(), 
+                item082.getNameItem(),
                 item082.getBrand(), 
                 item082.getType(), 
                 item082.getUnit(), 

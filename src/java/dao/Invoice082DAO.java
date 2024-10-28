@@ -8,8 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.ordering.Invoice082;
 
 /**
@@ -37,7 +35,7 @@ public class Invoice082DAO extends DAO{
 
             // 2. Gọi thủ tục lưu trữ
             preparedStatement = connection.prepareStatement(ADD_INVOICE);
-            preparedStatement.setString(1, invoice.getClient().getId());  // Tham số IN idClient
+            preparedStatement.setString(1, invoice.getCustomer().getId());  // Tham số IN idClient
             preparedStatement.setFloat(2, invoice.getTotalPrice());       // Tham số IN totalPrice
             preparedStatement.executeUpdate();  // Thực thi thủ tục
 

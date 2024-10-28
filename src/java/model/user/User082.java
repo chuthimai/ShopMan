@@ -22,6 +22,7 @@ public class User082 {
     private String password;
     private String address;
     private boolean gender;
+    private String phoneNumber;
     private SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
     public User082(
@@ -105,5 +106,16 @@ public class User082 {
         this.gender = gender;
         return this;
     }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public User082 setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
+    }
+    
+    
 }
 

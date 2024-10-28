@@ -67,7 +67,7 @@
                       <label for="nameItem" class="form-label">Tên mặt hàng</label>
                       <input type="text" class="form-control" id="nameItem" name="nameItem" required>
                       <div class="row">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <label for="type" class="form-label">Loại mặt hàng</label>
                                 <select class="form-select" aria-label="Default select example" id="type" name="type" required>
                                   <option selected>Select</option>
@@ -80,22 +80,18 @@
                                   %>
                                 </select>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <label for="brand" class="form-label" >Nhãn hiệu</label>
                                 <input type="text" class="form-control" id="brand" name="brand" required>
-                            </div>
-                            <div class="col-4">
-                                <label for="expiry" class="form-label" >Hạn sử dụng</label>
-                                <input type="text" class="form-control" id="expiry" name="expiry" required>
                             </div>
 
                         </div>
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <label for="exportedPrice" class="form-label" >Giá bán (VND)</label>
                                 <input type="number" class="form-control" id="exportedPrice" name="exportedPrice" required>
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <label for="unit" class="form-label" >Đơn vị mặt hàng</label>
                                 <select class="form-select" aria-label="Default select example" id="unit" name="unit" required>
                                   <option selected>Select</option>
@@ -116,7 +112,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Các thông tin khác của sản phẩm</h5>
-                                    <table class="table table-striped table-bordered" id="tableThemThongTin">
+                                    <table class="table table-striped table-bordered" id="tableAddInfo">
                                         <thead>
                                             <tr>
                                               <th scope="col">STT</th>
@@ -129,7 +125,7 @@
                                         </tbody>
                                     </table>
                                     <div class="d-grid gap-2">
-                                        <button type="button" class="add-row-btn" onclick="addRow()">+</button>
+                                        <button id="addRowInfo" type="button" class="add-row-btn" onclick="addRow()">+</button>
                                     </div>
 
                                 </div>
@@ -140,7 +136,7 @@
                 </div>
                 <div class="col-4 my-3">
                     <div class="text-center mb-3">
-                        <button type="button" class="btn btn-secondary btn-lg" onclick="addImageInput()">+ Thêm ảnh</button>
+                        <button id="addImg" type="button" class="btn btn-secondary btn-lg" onclick="addImageInput()">+ Thêm ảnh</button>
 
                     </div>
                     <div id="imageContainer" class="d-flex flex-column align-items-center"></div>
@@ -157,7 +153,7 @@
     <script>
         function addRow() {
             // Lấy bảng và tbody
-            var table = document.getElementById("tableThemThongTin").getElementsByTagName('tbody')[0];
+            var table = document.getElementById("tableAddInfo").getElementsByTagName('tbody')[0];
 
             // Tạo một hàng mới
             var newRow = table.insertRow();

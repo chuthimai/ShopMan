@@ -8,7 +8,7 @@
 <%@page import="model.ordering.OrderedItem082"%>
 <%@page import="model.item.ImageItem082"%>
 <%@page import="model.ordering.ShoppingCart082"%>
-<%@page import="model.user.Client082"%>
+<%@page import="model.user.Customer082"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -43,7 +43,7 @@
         }
     %>
     <%
-        Client082 user = (Client082) session.getAttribute("user");
+        Customer082 user = (Customer082) session.getAttribute("user");
     %>
 
     <nav>
@@ -57,11 +57,14 @@
         <%
             ShoppingCart082 shoppingCart082 = (ShoppingCart082) session.getAttribute("shoppingCart");
             Map<OrderedItem082, ImageItem082> items = shoppingCart082.getItems();
-            double total = 0.0;
             
             if (items.isEmpty()) {
         %>
-        <div>Chưa có mặt hàng nào được thêm vào giỏ hàng</div>
+        <div class="position-relative" style="width: 100%; height: 100%; padding: 10%;">
+            <div class="position-absolute top-50 start-50 translate-middle">
+                <h5>Chưa có mặt hàng nào được thêm vào giỏ hàng</h5>
+            </div>
+        </div>
         <%
             } else {
         %>
