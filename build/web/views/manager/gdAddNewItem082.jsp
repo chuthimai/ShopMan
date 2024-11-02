@@ -103,6 +103,8 @@
                                   <option value="Túi">Túi</option>
                                   <option value="Bao">Bao</option>
                                   <option value="Cây">Cây</option>
+                                  <option value="Chai">Chai</option>
+                                  <option value="Lọ">Lọ</option>
                                 </select>
                             </div>
                         </div>

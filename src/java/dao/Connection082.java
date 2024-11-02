@@ -7,8 +7,6 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +21,7 @@ public class Connection082 {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager
             .getConnection("jdbc:mysql://localhost:3306/shop_man?useSSL=false", "root", "12345678");
-        } catch (Exception ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Error connection 082");
         }
         
